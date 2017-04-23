@@ -24,13 +24,13 @@ public class LoginValidator implements Validator {
                 throw new IllegalArgumentException(bundle.getString("login_length_error"));
             }
 
-            if (!Character.isLetter(newValue.charAt(0))) {
-                throw new IllegalArgumentException(bundle.getString("first_letter_error"));
-            }
-
-            if (getTestArray().contains(newValue)) {
-                throw new IllegalArgumentException(bundle.getString("used_name"));
-            }
+//            if (!Character.isLetter(newValue.charAt(0))) {
+//                throw new IllegalArgumentException(bundle.getString("first_letter_error"));
+//            }
+//
+//            if (getTestArray().contains(newValue)) {
+//                throw new IllegalArgumentException(bundle.getString("used_name"));
+//            }
 
 
         } catch (IllegalArgumentException e) {
