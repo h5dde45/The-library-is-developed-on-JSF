@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ru.javabegin.training.web.servlets;
 
-import ru.javabegin.training.web.controllers.SearchController;
+import ru.javabegin.training.web.controllers.BookListController;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +22,7 @@ public class PdfContent extends HttpServlet {
         OutputStream out = response.getOutputStream();
         try {
             int id = Integer.valueOf(request.getParameter("id"));
-            SearchController searchController = (SearchController) request.getSession(false).getAttribute("searchController");
+            BookListController searchController = (BookListController) request.getSession(false).getAttribute("bookListController");
             byte[] content = searchController.getContent(id);
             response.setContentLength(content.length);
             out.write(content);

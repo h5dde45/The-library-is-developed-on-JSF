@@ -13,15 +13,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ManagedBean(eager = true)
 @SessionScoped
-public class SearchController implements Serializable {
+public class BookListController implements Serializable {
 
     private boolean requestFromPager;
     private int booksOnPage = 2;
@@ -32,16 +30,14 @@ public class SearchController implements Serializable {
     private ArrayList<Integer> pageNumbers = new ArrayList<Integer>(); // общее кол-во книг (не на текущей странице, а всего), нажно для постраничности
     private SearchType searchType;// хранит выбранный тип поиска
     private String searchString; // хранит поисковую строку
-    private Map<String, SearchType> searchList = new HashMap<String, SearchType>(); // хранит все виды поисков (по автору, по названию)
+
     private ArrayList<Book> currentBookList; // текущий список книг для отображения
     private String currentSql;// последний выполнный sql без добавления limit
 
-    public SearchController() {
+    public BookListController() {
         fillBooksAll();
 
-        ResourceBundle bundle = ResourceBundle.getBundle("ru.javabegin.training.web.nls.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
-        searchList.put(bundle.getString("author_name"), SearchType.AUTHOR);
-        searchList.put(bundle.getString("book_name"), SearchType.TITLE);
+    
 
     }
 
@@ -96,7 +92,7 @@ public class SearchController implements Serializable {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(SearchController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookListController.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (stmt != null) {
@@ -109,11 +105,13 @@ public class SearchController implements Serializable {
                     conn.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(SearchController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BookListController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
     }
+
+  
 
     private void fillBooksAll() {
         fillBooksBySQL("select b.id,b.name,b.isbn,b.page_count,b.publish_year, p.name as publisher, b.descr, "
@@ -151,7 +149,7 @@ public class SearchController implements Serializable {
     }
 
     public String fillBooksByLetter() {
-        
+
         imitateLoading();
 
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -170,7 +168,7 @@ public class SearchController implements Serializable {
     }
 
     public String fillBooksBySearch() {
-        
+
         imitateLoading();
 
         submitValues(' ', 1, -1, false);
@@ -360,9 +358,6 @@ public class SearchController implements Serializable {
         this.searchType = searchType;
     }
 
-    public Map<String, SearchType> getSearchList() {
-        return searchList;
-    }
 
     public ArrayList<Book> getCurrentBookList() {
         return currentBookList;
@@ -412,7 +407,7 @@ public class SearchController implements Serializable {
         try {
             Thread.sleep(1000);// имитация загрузки процесса
         } catch (InterruptedException ex) {
-            Logger.getLogger(SearchController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookListController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

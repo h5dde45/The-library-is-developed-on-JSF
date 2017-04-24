@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ru.javabegin.training.web.servlets;
 
-import ru.javabegin.training.web.controllers.SearchController;
+import ru.javabegin.training.web.controllers.BookListController;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,25 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 
-@WebServlet(name = "ShowImage",urlPatterns = "/ShowImage")
+@WebServlet(name = "ShowImage",
+urlPatterns = {"/ShowImage"})
 public class ShowImage extends HttpServlet {
-
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("image/jpeg");  
-        OutputStream out = response.getOutputStream();  
+        response.setContentType("image/jpeg");
+        OutputStream out = response.getOutputStream();
         try {
             int id = Integer.valueOf(request.getParameter("id"));
-            
-            SearchController searchController = (SearchController)request.getSession(false).getAttribute("searchController");
-            
-            byte[] image = searchController.getImage(id);         
+            BookListController searchController = (BookListController) request.getSession(false).getAttribute("bookListController");
+            byte[] image = searchController.getImage(id);
             response.setContentLength(image.length);
             out.write(image);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {            
+        } finally {
             out.close();
         }
     }
