@@ -1,0 +1,902 @@
+        while (true) {
+            randomTemp = (int) (Math.random() * 22);
+            if (!randomList.contains(randomTemp)) {
+                randomList.set(indexRandom, randomTemp);
+                break;
+            }
+        }
+                CameraMatrix.rotateShape[12] = 0;
+        CameraMatrix.rotateShape[13] = 0;
+        CameraMatrix.rotateShape[14] = 0;
+
+        float w = (float) -Math.cos(angleShape / 2);
+        float x = (float) -Math.sin(angleShape / 2);
+        float y = 0;
+        float z = 0;
+        float[] temp = new float[16];
+
+        temp[0] = 1 - 2 * (y * y + z * z);
+        temp[4] = 2 * (x * y - z * w);
+        temp[8] = 2 * (x * z + y * w);
+        temp[12] = 0;
+
+        temp[1] = 2 * (x * y + z * w);
+        temp[5] = 1 - 2 * (x * x + z * z);
+        temp[9] = 2 * (y * z - x * w);
+        temp[13] = 0;
+
+        temp[2] = 2 * (x * z - y * w);
+        temp[6] = 2 * (y * z + x * w);
+        temp[10] = 1 - 2 * (x * x + y * y);
+        temp[14] = 0;
+        temp[15] = 1;
+
+        CameraMatrix.rotateShape = MathUtils.matrixMultiplication(temp,
+                CameraMatrix.rotateShape);
+
+        w = (float) -Math.cos(angleShape / 2);
+        x = 0;
+        y = (float) -Math.sin(angleShape / 2);
+        z = 0;
+        temp = new float[16];
+
+        temp[0] = 1 - 2 * (y * y + z * z);
+        temp[4] = 2 * (x * y - z * w);
+        temp[8] = 2 * (x * z + y * w);
+        temp[12] = 0;
+
+        temp[1] = 2 * (x * y + z * w);
+        temp[5] = 1 - 2 * (x * x + z * z);
+        temp[9] = 2 * (y * z - x * w);
+        temp[13] = 0;
+
+        temp[2] = 2 * (x * z - y * w);
+        temp[6] = 2 * (y * z + x * w);
+        temp[10] = 1 - 2 * (x * x + y * y);
+        temp[14] = 0;
+        temp[15] = 1;
+
+        CameraMatrix.rotateShape = MathUtils.matrixMultiplication(temp,
+                CameraMatrix.rotateShape);
+                      float w = (float) -Math.cos(angleZWobbler / 2);
+        float x = 0;
+        float y = 0;
+        float z = (float) -Math.sin(angleZWobbler / 2);
+        float[] temp = new float[16];
+
+        temp[0] = 1 - 2 * (y * y + z * z);
+        temp[4] = 2 * (x * y - z * w);
+        temp[8] = 2 * (x * z + y * w);
+        temp[12] = 0;
+
+        temp[1] = 2 * (x * y + z * w);
+        temp[5] = 1 - 2 * (x * x + z * z);
+        temp[9] = 2 * (y * z - x * w);
+        temp[13] = 0;
+
+        temp[2] = 2 * (x * z - y * w);
+        temp[6] = 2 * (y * z + x * w);
+        temp[10] = 1 - 2 * (x * x + y * y);
+        temp[14] = 0;
+        temp[15] = 1;
+
+        CameraMatrix.rotateWobblerZ = MathUtils.matrixMultiplication(temp, CameraMatrix.rotateWobblerZ);
+
+        float[] floats = MathUtils.matVecMul(CameraMatrix.rotateWobblerZ, new float[]{0, 0, -1, 1});
+        float rx = floats[1] / floats[2];
+
+        w = (float) -Math.cos(rx / 2);
+        x = (float) -Math.sin(rx / 2);
+        y = 0;
+        z = 0;
+        temp = new float[16];
+
+        temp[0] = 1 - 2 * (y * y + z * z);
+        temp[4] = 2 * (x * y - z * w);
+        temp[8] = 2 * (x * z + y * w);
+        temp[12] = 0;
+
+        temp[1] = 2 * (x * y + z * w);
+        temp[5] = 1 - 2 * (x * x + z * z);
+        temp[9] = 2 * (y * z - x * w);
+        temp[13] = 0;
+
+        temp[2] = 2 * (x * z - y * w);
+        temp[6] = 2 * (y * z + x * w);
+        temp[10] = 1 - 2 * (x * x + y * y);
+        temp[14] = 0;
+        temp[15] = 1;
+
+        CameraMatrix.rotateWobblerXY = MathUtils.matrixMultiplication(temp, CameraMatrix.unitMatrix);
+
+        float ry = floats[0] / floats[2];
+        w = (float) -Math.cos(ry / 2);
+        x = 0;
+        y = (float) -Math.sin(ry / 2);
+        z = 0;
+        temp = new float[16];
+
+        temp[0] = 1 - 2 * (y * y + z * z);
+        temp[4] = 2 * (x * y - z * w);
+        temp[8] = 2 * (x * z + y * w);
+        temp[12] = 0;
+
+        temp[1] = 2 * (x * y + z * w);
+        temp[5] = 1 - 2 * (x * x + z * z);
+        temp[9] = 2 * (y * z - x * w);
+        temp[13] = 0;
+
+        temp[2] = 2 * (x * z - y * w);
+        temp[6] = 2 * (y * z + x * w);
+        temp[10] = 1 - 2 * (x * x + y * y);
+        temp[14] = 0;
+        temp[15] = 1;
+
+        CameraMatrix.rotateWobblerXY = MathUtils.matrixMultiplication(temp, CameraMatrix.rotateWobblerXY);
+        CameraMatrix.rotateWobblerXY[14] = -30;
+               float w = (float) -Math.cos(angleYWobbler / 2);
+        float x = 0;
+        float y = (float) Math.sin(angleYWobbler / 2);
+        float z = 0;
+        float[] temp = new float[16];
+
+        temp[0] = 1 - 2 * (y * y + z * z);
+        temp[4] = 2 * (x * y - z * w);
+        temp[8] = 2 * (x * z + y * w);
+        temp[12] = 0;
+
+        temp[1] = 2 * (x * y + z * w);
+        temp[5] = 1 - 2 * (x * x + z * z);
+        temp[9] = 2 * (y * z - x * w);
+        temp[13] = 0;
+
+        temp[2] = 2 * (x * z - y * w);
+        temp[6] = 2 * (y * z + x * w);
+        temp[10] = 1 - 2 * (x * x + y * y);
+        temp[14] = 0;
+        temp[15] = 1;
+
+        CameraMatrix.rotateWobblerZ = MathUtils.matrixMultiplication(temp,
+                CameraMatrix.unitMatrix);
+                        switch (randomList.get(indexRandom)) {
+            case 0:
+                shape = shape0;
+                break;
+            case 1:
+                shape = shape1;
+                break;
+            case 2:
+                shape = shape2;
+                break;
+            case 3:
+                shape = shape3;
+                break;
+            case 4:
+                shape = shape4;
+                break;
+            case 5:
+                shape = shape5;
+                break;
+            case 6:
+                shape = shape6;
+                break;
+            case 7:
+                shape = shape7;
+                break;
+            case 8:
+                shape = shape8;
+                break;
+            case 9:
+                shape = shape9;
+                break;
+            case 10:
+                shape = shape10;
+                break;
+            case 11:
+                shape = shape11;
+                break;
+            case 12:
+                shape = shape12;
+                break;
+            case 13:
+                shape = shape13;
+                break;
+            case 14:
+                shape = shape14;
+                break;
+            case 15:
+                shape = shape15;
+                break;
+            case 16:
+                shape = shape16;
+                break;
+            case 17:
+                shape = shape17;
+                break;
+            case 18:
+                shape = shape18;
+                break;
+            case 19:
+                shape = shape19;
+                break;
+            case 20:
+                shape = shape20;
+                break;
+            case 21:
+                shape = shape21;
+        }
+              int x;
+        int y;
+        int z;
+        boolean fl = false;
+
+        for (Cube cube : shape.cubes) {
+            x = Math.round(cube.mT[12] + 3.5f);
+            y = Math.round(cube.mT[13] + 3.5f);
+            z = Math.round(cube.mT[14] + 7.5f);
+
+            if (z == listZMax[x][y] + 1) {
+                fl = true;
+                break;
+            }
+        }
+
+        if (fl) {
+            for (Cube cube : shape.cubes) {
+                x = Math.round(cube.mT[12] + 3.5f);
+                y = Math.round(cube.mT[13] + 3.5f);
+                z = Math.round(cube.mT[14] + 7.5f);
+                listZCount.set(z, listZCount.get(z) + 1);
+                if (z > listZMax[x][y]) {
+                    listZMax[x][y] = z;
+                }
+                box[x][y][z] = shape;
+                listIndexBox.add(x);
+                listIndexBox.add(y);
+                listIndexBox.add(z);
+                listBox.add(cube.mT[12]);
+                listBox.add(cube.mT[13]);
+                listBox.add((float) Math.round(cube.mT[14]));
+            }
+            if (listZCount.contains(64)) {
+                List<Integer> indexes = new ArrayList<>();
+                for (int i = 0; i < 8; i++) {
+                    if (listZCount.get(i) == 64) {
+                        indexes.add(i);
+                    }
+                }
+                for (int i = 0; i < indexes.size(); i++) {
+                    listZCount.remove(indexes.get(i) - i);/////////UnsupportedOperationException
+                    listZCount.add(0);
+                }
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        for (int k = 0; k < indexes.size(); k++) {
+                            for (int n = indexes.get(k) - k; n < 7; n++) {
+                                box[i][j][indexes.get(n)] = box[i][j][indexes.get(n + 1)];
+                            }
+                            box[i][j][indexes.get(8)] = null;
+                        }
+                    }
+                }
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        listZMax[i][j] = 0;
+                    }
+                }
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        for (int k = 0; k < 8; k++) {
+                            if (box[i][j][k] != null) {
+                                listZMax[i][j] = k;
+                            }
+                        }
+                    }
+                }
+                List<Float> listBoxTemp = new ArrayList<>();
+                List<Integer> listIndexBoxTemp = new ArrayList<>();
+                for (int i = 0; i < listIndexBox.size() / 3; i++) {
+                    if (!indexes.contains(listIndexBox.get(i * 3 + 2))) {
+                        listIndexBoxTemp.add(listIndexBox.get(i * 3));
+                        listIndexBoxTemp.add(listIndexBox.get(i * 3 + 1));
+                        listIndexBoxTemp.add(listIndexBox.get(i * 3 + 2));
+                        listBoxTemp.add(listBox.get(i * 3));
+                        listBoxTemp.add(listBox.get(i * 3 + 1));
+                        listBoxTemp.add(listBox.get(i * 3 + 2));
+                    }
+                }
+                listBox = listBoxTemp;
+                listIndexBox = listIndexBoxTemp;
+            }
+            shape.defaultValue();
+            quadrant();
+            addShape = false;
+            selectShape = false;
+            minusZ = 0;
+            return;
+        }
+
+        for (Cube cube : shape.cubes) {
+            cube.mT[14] -= .1;
+        }
+        minusZ -= .1;
+                for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[0] * MathUtils.vertices[i * 3] +
+                        cube.mT[4] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[8] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[12];
+                if (currentPosition < -3.5) {
+                    return;
+                }
+            }
+        }
+
+        for (Cube cube : shape.cubes) {
+            cube.mT[12] -= 1;
+        }
+        dx--;
+                for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[0] * MathUtils.vertices[i * 3] +
+                        cube.mT[4] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[8] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[12];
+                if (currentPosition > 3.5) {
+                    return;
+                }
+            }
+        }
+
+        for (Cube cube : shape.cubes) {
+            cube.mT[12] += 1;
+        }
+        dx++;
+              for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[1] * MathUtils.vertices[i * 3] +
+                        cube.mT[5] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[9] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[13];
+                if (Math.round(currentPosition) > 3.5) {
+                    return;
+                }
+            }
+        }
+
+        for (Cube cube : shape.cubes) {
+            cube.mT[13] += 1;
+        }
+        dy++;
+                for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[1] * MathUtils.vertices[i * 3] +
+                        cube.mT[5] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[9] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[13];
+                if (currentPosition < -3.5) {
+                    return;
+                }
+            }
+        }
+
+        for (Cube cube : shape.cubes) {
+            cube.mT[13] -= 1;
+        }
+        dy--;
+               defaultValue();
+        MathUtils.rotateX(shape.cubes);
+
+        for (Cube cube : shape.cubes) {
+            cube.mT[12] += dx;
+            cube.mT[13] += dy;
+        }
+
+        min = 0;
+        max = 0;
+        for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[1] * MathUtils.vertices[i * 3] +
+                        cube.mT[5] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[9] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[13];
+                if (currentPosition > max) {
+                    max = currentPosition;
+                } else if (currentPosition < min) {
+                    min = currentPosition;
+                }
+            }
+        }
+        if (max > 4.5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[13] -= Math.round(max) - 4;
+            }
+            dy -= Math.round(max) - 4;
+        } else if (min < -4.5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[13] -= Math.round(min) + 4;
+            }
+            dy -= Math.round(min) + 4;
+        }
+
+        min = 10;
+        for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[2] * MathUtils.vertices[i * 3] +
+                        cube.mT[6] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[10] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[14];
+                if (currentPosition < min) {
+                    min = currentPosition;
+                }
+            }
+        }
+        if (min < -.5 || min > .5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[14] -= Math.round(min);
+            }
+        }
+                defaultValue();
+        MathUtils.rotateY(shape.cubes);
+
+        for (Cube cube : shape.cubes) {
+            cube.mT[12] += dx;
+            cube.mT[13] += dy;
+        }
+
+        min = 0;
+        max = 0;
+        for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[0] * MathUtils.vertices[i * 3] +
+                        cube.mT[4] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[8] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[12];
+                if (currentPosition > max) {
+                    max = currentPosition;
+                } else if (currentPosition < min) {
+                    min = currentPosition;
+                }
+            }
+        }
+        if (max > 4.5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[12] -= Math.round(max) - 4;
+            }
+            dx -= Math.round(max) - 4;
+        } else if (min < -4.5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[12] -= Math.round(min) + 4;
+            }
+            dx -= Math.round(min) + 4;
+        }
+
+        min = 10;
+        for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[2] * MathUtils.vertices[i * 3] +
+                        cube.mT[6] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[10] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[14];
+                if (currentPosition < min) {
+                    min = currentPosition;
+                }
+            }
+        }
+        if (min < -.5 || min > .5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[14] -= Math.round(min);
+            }
+        }
+           defaultValue();
+        MathUtils.rotateZ(shape.cubes);
+
+        for (Cube cube : shape.cubes) {
+            cube.mT[12] += dx;
+            cube.mT[13] += dy;
+        }
+
+        min = 0;
+        max = 0;
+        for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[0] * MathUtils.vertices[i * 3] +
+                        cube.mT[4] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[8] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[12];
+                if (currentPosition > max) {
+                    max = currentPosition;
+                } else if (currentPosition < min) {
+                    min = currentPosition;
+                }
+            }
+        }
+        if (max > 4.5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[12] -= Math.round(max) - 4;
+            }
+            dx -= Math.round(max) - 4;
+        } else if (min < -4.5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[12] -= Math.round(min) + 4;
+            }
+            dx -= Math.round(min) + 4;
+        }
+
+        min = 0;
+        max = 0;
+        for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[1] * MathUtils.vertices[i * 3] +
+                        cube.mT[5] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[9] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[13];
+                if (currentPosition > max) {
+                    max = currentPosition;
+                } else if (currentPosition < min) {
+                    min = currentPosition;
+                }
+            }
+        }
+        if (max > 4.5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[13] -= Math.round(max) - 4;
+            }
+            dy -= Math.round(max) - 4;
+        } else if (min < -4.5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[13] -= Math.round(min) + 4;
+            }
+            dy -= Math.round(min) + 4;
+        }
+
+        min = 10;
+        for (Cube cube : shape.cubes) {
+            for (int i = 0; i < 24; i++) {
+                currentPosition = cube.mT[2] * MathUtils.vertices[i * 3] +
+                        cube.mT[6] * MathUtils.vertices[i * 3 + 1] +
+                        cube.mT[10] * MathUtils.vertices[i * 3 + 2] +
+                        cube.mT[14];
+                if (currentPosition < min) {
+                    min = currentPosition;
+                }
+            }
+        }
+        if (min < -.5 || min > .5) {
+            for (Cube cube : shape.cubes) {
+                cube.mT[14] -= Math.round(min);
+            }
+        }
+                switch (randomList.get(indexRandom)) {
+            case 0:
+                shape0.defaultValue();
+                break;
+            case 1:
+                shape1.defaultValue();
+                break;
+            case 2:
+                shape2.defaultValue();
+                break;
+            case 3:
+                shape3.defaultValue();
+                break;
+            case 4:
+                shape4.defaultValue();
+                break;
+            case 5:
+                shape5.defaultValue();
+                break;
+            case 6:
+                shape6.defaultValue();
+                break;
+            case 7:
+                shape7.defaultValue();
+                break;
+            case 8:
+                shape8.defaultValue();
+                break;
+            case 9:
+                shape9.defaultValue();
+                break;
+            case 10:
+                shape10.defaultValue();
+                break;
+            case 11:
+                shape11.defaultValue();
+                break;
+            case 12:
+                shape12.defaultValue();
+                break;
+            case 13:
+                shape13.defaultValue();
+                break;
+            case 14:
+                shape14.defaultValue();
+                break;
+            case 15:
+                shape15.defaultValue();
+                break;
+            case 16:
+                shape16.defaultValue();
+                break;
+            case 17:
+                shape17.defaultValue();
+                break;
+            case 18:
+                shape18.defaultValue();
+                break;
+            case 19:
+                shape19.defaultValue();
+                break;
+            case 20:
+                shape20.defaultValue();
+                break;
+            case 21:
+                shape21.defaultValue();
+        }
+              switch (p) {
+            case 0:
+                shape0.draw();
+                break;
+            case 1:
+                shape1.draw();
+                break;
+            case 2:
+                shape2.draw();
+                break;
+            case 3:
+                shape3.draw();
+                break;
+            case 4:
+                shape4.draw();
+                break;
+            case 5:
+                shape5.draw();
+                break;
+            case 6:
+                shape6.draw();
+                break;
+            case 7:
+                shape7.draw();
+                break;
+            case 8:
+                shape8.draw();
+                break;
+            case 9:
+                shape9.draw();
+                break;
+            case 10:
+                shape10.draw();
+                break;
+            case 11:
+                shape11.draw();
+                break;
+            case 12:
+                shape12.draw();
+                break;
+            case 13:
+                shape13.draw();
+                break;
+            case 14:
+                shape14.draw();
+                break;
+            case 15:
+                shape15.draw();
+                break;
+            case 16:
+                shape16.draw();
+                break;
+            case 17:
+                shape17.draw();
+                break;
+            case 18:
+                shape18.draw();
+                break;
+            case 19:
+                shape19.draw();
+                break;
+            case 20:
+                shape20.draw();
+                break;
+            case 21:
+                shape21.draw();
+        }
+             randomList.add((int) (Math.random() * 22));
+        while (true) {
+            randomTemp = (int) (Math.random() * 22);
+            if (!randomList.contains(randomTemp)) {
+                randomList.add(randomTemp);
+                break;
+            }
+        }
+        while (true) {
+            randomTemp = (int) (Math.random() * 22);
+            if (!randomList.contains(randomTemp)) {
+                randomList.add(randomTemp);
+                break;
+            }
+        }
+        while (true) {
+            randomTemp = (int) (Math.random() * 22);
+            if (!randomList.contains(randomTemp)) {
+                randomList.add(randomTemp);
+                break;
+            }
+        }
+               glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        if (!addShape && spinning) {
+            rotateWobbler();
+        }
+        rotateShape();
+
+        glUniformMatrix4fv(pMatrix, 1, false, ProjectionMatrix.m, 0);
+        glUniformMatrix4fv(vMatrix, 1, false, CameraMatrix.rotateWobblerXY, 0);
+
+        glUniform1f(transparent, 1);
+        glUniformMatrix4fv(otMatrix, 1, false, bottom.mT, 0);
+        bottom.draw();
+
+        for (int i = 0; i < listBox.size() / 3; i++) {
+            CameraMatrix.unitBox[12] = listBox.get(i * 3);
+            CameraMatrix.unitBox[13] = listBox.get(i * 3 + 1);
+            CameraMatrix.unitBox[14] = listBox.get(i * 3 + 2);
+            glUniformMatrix4fv(otMatrix, 1, false, CameraMatrix.unitBox, 0);
+            box[listIndexBox.get(i * 3)][listIndexBox.get(i * 3 + 1)][listIndexBox.get(i * 3 + 2)].drawZero();
+        }
+        CameraMatrix.unitBox[12] = 0;
+        CameraMatrix.unitBox[13] = 0;
+        CameraMatrix.unitBox[14] = 0;
+
+        if (!selectShape) {
+            CameraMatrix.rotateShape[12] = -3f;
+            CameraMatrix.rotateShape[13] = 10;
+            CameraMatrix.rotateShape[14] = -35;
+            glUniformMatrix4fv(vMatrix, 1, false, CameraMatrix.rotateShape, 0);
+            shapeDraw(randomList.get(0));
+
+            CameraMatrix.rotateShape[12] = 3f;
+            glUniformMatrix4fv(vMatrix, 1, false, CameraMatrix.rotateShape, 0);
+            shapeDraw(randomList.get(1));
+
+            CameraMatrix.rotateShape[13] = -10;
+            glUniformMatrix4fv(vMatrix, 1, false, CameraMatrix.rotateShape, 0);
+            shapeDraw(randomList.get(2));
+
+            CameraMatrix.rotateShape[12] = -3f;
+            glUniformMatrix4fv(vMatrix, 1, false, CameraMatrix.rotateShape, 0);
+            shapeDraw(randomList.get(3));
+        } else {
+            shapeDraw(randomList.get(indexRandom));
+
+            glUniform1f(transparent, 0);
+
+            glUniformMatrix4fv(pMatrix, 1, false, ProjectionMatrix.im, 0);
+            glUniformMatrix4fv(vMatrix, 1, false, CameraMatrix.unitMatrix, 0);
+            glUniformMatrix4fv(otMatrix, 1, false, move.mT, 0);
+            move.draw();
+            if (!addShape) {
+                if (spinning) {
+                    rotation.draw();
+                } else {
+                    rotationNoAvailable.draw();
+                }
+            }
+
+            if (addShape) {
+                moveZ();
+            } else {
+                glUniformMatrix4fv(pMatrix, 1, false, ProjectionMatrix.m, 0);
+                glUniformMatrix4fv(vMatrix, 1, false, CameraMatrix.rotateWobblerXY, 0);
+                glUniformMatrix4fv(otMatrix, 1, false, top.mT, 0);
+                top.draw();
+            }
+        }
+                glViewport(0, 0, width, height);
+        ProjectionMatrix.setProjectionMatrix(40.0f * height / 1920,
+                (float) width, (float) height, 1f, 100.0f);
+        ProjectionMatrix.setProjectionMatrixIcon(90.0f,
+                (float) width, (float) height, 1f, 3.0f);
+        pMatrix = glGetUniformLocation(ShaderUtils.programId, "pMatrix");
+
+        top = new Top(context, otMatrix);
+        bottom = new Bottom(context, otMatrix);
+        move = new Move(context, otMatrix);
+        rotation = new Rotation(context, otMatrix);
+        rotationNoAvailable = new RotationNoAvailable(context, otMatrix);
+        beginRotateWobbler();
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+               glEnable(GL_DEPTH_TEST);
+        glClearColor(0.5f, .9f, 0.1f, 1f);
+        ShaderUtils.createProgram(context);
+        vMatrix = glGetUniformLocation(ShaderUtils.programId, "vMatrix");
+        otMatrix = glGetUniformLocation(ShaderUtils.programId, "otMatrix");
+        transparent = glGetUniformLocation(ShaderUtils.programId, "a");
+
+        shape0 = new Shape0(context, otMatrix);
+        shape1 = new Shape1(context, otMatrix);
+        shape2 = new Shape2(context, otMatrix);
+        shape3 = new Shape3(context, otMatrix);
+        shape4 = new Shape4(context, otMatrix);
+        shape5 = new Shape5(context, otMatrix);
+        shape6 = new Shape6(context, otMatrix);
+        shape7 = new Shape7(context, otMatrix);
+        shape8 = new Shape8(context, otMatrix);
+        shape9 = new Shape9(context, otMatrix);
+        shape10 = new Shape10(context, otMatrix);
+        shape11 = new Shape11(context, otMatrix);
+        shape12 = new Shape12(context, otMatrix);
+        shape13 = new Shape13(context, otMatrix);
+        shape14 = new Shape14(context, otMatrix);
+        shape15 = new Shape15(context, otMatrix);
+        shape16 = new Shape16(context, otMatrix);
+        shape17 = new Shape17(context, otMatrix);
+        shape18 = new Shape18(context, otMatrix);
+        shape19 = new Shape19(context, otMatrix);
+        shape20 = new Shape20(context, otMatrix);
+        shape21 = new Shape21(context, otMatrix);
+        cube = shape0.cubes[1];
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                listZMax[i][j] = -1;
+            }
+        }
+        randomShape();
+          Context context;
+    Shape shape;
+    Shape0 shape0;
+    Shape1 shape1;
+    Shape2 shape2;
+    Shape3 shape3;
+    Shape4 shape4;
+    Shape5 shape5;
+    Shape6 shape6;
+    Shape7 shape7;
+    Shape8 shape8;
+    Shape9 shape9;
+    Shape10 shape10;
+    Shape11 shape11;
+    Shape12 shape12;
+    Shape13 shape13;
+    Shape14 shape14;
+    Shape15 shape15;
+    Shape16 shape16;
+    Shape17 shape17;
+    Shape18 shape18;
+    Shape19 shape19;
+    Shape20 shape20;
+    Shape21 shape21;
+    Cube cube;
+    float dx;
+    float dy;
+    boolean addShape;
+    boolean spinning = true;
+    List<Integer> randomList = new ArrayList<>();
+    Shape[][][] box = new Shape[8][8][8];
+    List<Float> listBox = new ArrayList<>();
+    List<Integer> listIndexBox = new ArrayList<>();
+    List<Integer> listZCount = Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0);
+    int[][] listZMax = new int[8][8];
+    boolean[][][] listZ = new boolean[8][8][8];
+    int[][] minZShape = new int[8][8];
+    int indexRandom = -1;
+    boolean selectShape;
+    int randomTemp;
+    Bottom bottom;
+    Top top;
+    Move move;
+    Rotation rotation;
+    RotationNoAvailable rotationNoAvailable;
+    int pMatrix;
+    int vMatrix;
+    int otMatrix;
+    int transparent;
+    float angleYWobbler = (float) Math.toRadians(25);
+    float angleZWobbler = (float) Math.toRadians(-.5);
+    float angleShape = (float) Math.toRadians(.5);
+    float currentPosition;
+    float min = 0;
+    float max = 0;
+    float minusZ;
