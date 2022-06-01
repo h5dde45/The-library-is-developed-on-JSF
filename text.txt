@@ -1,0 +1,29 @@
+precision mediump float;
+
+//uniform float r;
+//uniform float g;
+//uniform float b;
+uniform float a;
+uniform sampler2D uTextureUnit;
+varying vec2 vTexture;
+
+void main() {
+    vec4 tex = texture2D (uTextureUnit, vTexture);
+    gl_FragColor = vec4(tex.r, tex.g, tex.b, tex.a+a);
+    //    gl_FragColor = vec4(tex.r+r, tex.g+g, tex.b+b, tex.a+a);
+    //    gl_FragColor = vec4(r,g, b, a);
+}
+
+attribute vec4 aPosition;
+attribute vec2 aTexture;
+varying vec2 vTexture;
+
+uniform mat4 pMatrix;
+uniform mat4 vMatrix;
+//uniform mat4 vmMatrix;
+uniform mat4 otMatrix;
+
+void main() {
+    gl_Position = pMatrix*vMatrix*otMatrix*aPosition;
+    vTexture=aTexture;
+}
